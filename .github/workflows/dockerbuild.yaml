@@ -1,9 +1,9 @@
-name: Docker Publish
+name: Docker Build
 
 on:
   push:
     # Publish `main` as Docker `latest` image.
-    # branches:
+    branches:
     - "main"
 
     # Publish `2.1.2` tags as releases.
