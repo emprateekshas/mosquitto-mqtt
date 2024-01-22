@@ -10,9 +10,9 @@ FROM eclipse-mosquitto:latest AS mosquitto
 #RUN --mount=type=secret,id=MTC_PASSWD \
 #    mosquitto_passwd -c -b /mosquitto/data/passwd mtconnect ${MTC_PASSWORD}
 
-RUN --mount=type=secret,id=MTC_PASSWD MTC_PASSWD=$(cat /run/secrets/MTC_PASSWD)
+#RUN --mount=type=secret,id=MTC_PASSWD MTC_PASSWD=$(cat /run/secrets/MTC_PASSWD)
 RUN touch /mosquitto/data/passwd
-RUN mosquitto_passwd -b /mosquitto/data/passwd mtconnect $MTC_PASSWD
+RUN mosquitto_passwd -b /mosquitto/data/passwd mtconnect mtconnect
 
 VOLUME ["/mosquitto/data", "/mosquitto/log"]
 EXPOSE 1883
