@@ -50,6 +50,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           secrets: |
             MTC_PASSWD=${{ secrets.MTC_PASSWD }}
+            MTC_USRNAME=${{ secrets.MTC_USRNAME }}
           # docker hub user/repo:tag
           tags: |
             ${{ secrets.DOCKERHUB_USRNAME }}/mosquitto:latest
