@@ -5,7 +5,7 @@
 FROM eclipse-mosquitto:latest AS mosquitto
 
 #RUN mkdir -p /run/secrets/
-RUN --mount=type=secret,id=MTC_PASSWD mosquitto_passwd -c -b /mosquitto/data/passwd "$(cat /run/secrets/MTC_USRNAME)" "$(cat /run/secrets/MTC_PASSWD)"
+RUN --mount=type=secret,id=MTC_PASSWD,target=/run/secrets/MTC_PASSWD mosquitto_passwd -c -b /mosquitto/data/passwd "$(cat /run/secrets/MTC_USRNAME)" "$(cat /run/secrets/MTC_PASSWD)"
 
 VOLUME ["/mosquitto/data", "/mosquitto/log"]
 EXPOSE 1883
