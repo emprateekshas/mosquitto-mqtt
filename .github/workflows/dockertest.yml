@@ -31,5 +31,5 @@ jobs:
             docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
           else
-            docker build . --secrets --file Dockerfile
+            docker build . --secrets src=run/secrets --file Dockerfile
           fi
