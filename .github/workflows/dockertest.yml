@@ -3,8 +3,6 @@ on:
   push: 
     # Test `develop` 
     branches: 
-      - develop 
-      - dev 
       - main 
   # Run tests for any PRs. 
   pull_request: 
@@ -28,7 +26,7 @@ jobs:
             exit 1 
           fi 
           echo "MTC_PASSWD=${{ secrets.MTC_PASSWD }}" >> $GITHUB_ENV 
-          echo "MTC_USERNAME=${{ secrets.MTC_USRNAME }}" >> $GITHUB_ENV 
+          echo "MTC_USRNAME=${{ secrets.MTC_USRNAME }}" >> $GITHUB_ENV 
       - name: Run tests 
         run: | 
           if [ -f docker-compose.test.yml ]; then 
