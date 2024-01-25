@@ -1,29 +1,34 @@
-name: Docker Test
-
-on:
-  push:
-    # Test `develop`
-    branches:
-      - main
-
-  # Run tests for any PRs.
-  pull_request:
-
-env:
-  IMAGE_NAME: mosquitto
-
-jobs:
-  # Run tests.
-  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-       
-      - name: Set password secret as an environment variable
-        run: echo "MTC_PASSWD=${{ secrets.MTC_PASSWD }}" >> $GITHUB_ENV
-             echo "MTC_USRNAME=${{ secrets.MTC_USRNAME }}" >> $GITHUB_ENV
+name: Docker Test 
+on: 
+  push: 
+    # Test `develop` 
+    branches: 
+      - develop 
+      - dev 
+      - main 
+  # Run tests for any PRs. 
+  pull_request: 
+env: 
+  IMAGE_NAME: mosquitto 
+jobs: 
+  # Run tests. 
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/ 
+  test: 
+    runs-on: ubuntu-latest 
+    steps: 
+      - uses: actions/checkout@v4 
+      - name: Set password and username secrets as environment variables 
+        run: | 
+          if [ -z "${{ secrets.MTC_PASSWD }}" ]; then 
+            echo "Secret MTC_PASSWD is missing!" 
+            exit 1 
+          fi 
+          if [ -z "${{ secrets.MTC_USERNAME }}" ]; then 
+            echo "Secret MTC_USERNAME is missing!" 
+            exit 1 
+          fi 
+          echo "MTC_PASSWD=${{ secrets.MTC_PASSWD }}" >> $GITHUB_ENV 
+          echo "MTC_USERNAME=${{ secrets.MTC_USERNAME }}" >> $GITHUB_ENV 
       - name: Run tests 
         run: | 
           if [ -f docker-compose.test.yml ]; then 
@@ -35,4 +40,4 @@ jobs:
             --secret id=MTC_USRNAME,env=MTC_USRNAME \ 
             --build-arg MTC_USRNAME="${MTC_USRNAME}" \ 
             --build-arg MTC_PASSWD="${MTC_PASSWD}" . --file Dockerfile 
-          fi
+          fi 
