@@ -26,4 +26,4 @@ jobs:
              echo "MTC_USRNAME=${{ secrets.MTC_USRNAME }}" >> $GITHUB_ENV
         
       - name: Run tests
-        run: docker build . --secrets  src=run/secrets --file Dockerfile
+        run: docker build . --secrets --file Dockerfile
