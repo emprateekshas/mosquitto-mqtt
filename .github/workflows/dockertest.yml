@@ -27,15 +27,15 @@ jobs:
           fi 
           echo "MTC_PASSWD=${{ secrets.MTC_PASSWD }}" >> $GITHUB_ENV 
           echo "MTC_USRNAME=${{ secrets.MTC_USRNAME }}" >> $GITHUB_ENV 
-      - name: Run tests 
-        run: | 
-          if [ -f docker-compose.test.yml ]; then 
-            docker-compose --file docker-compose.test.yml build 
-            docker-compose --file docker-compose.test.yml run sut 
-          else 
-            DOCKER_BUILDKIT=1 docker build \ 
-            --secret id=MTC_PASSWD,env=MTC_PASSWD \ 
-            --secret id=MTC_USRNAME,env=MTC_USRNAME \ 
-            --build-arg MTC_USRNAME="${MTC_USRNAME}" \ 
-            --build-arg MTC_PASSWD="${MTC_PASSWD}" . --file Dockerfile 
-          fi 
+      - name: Run tests
+        run: |
+          if [ -f docker-compose.test.yml ]; then
+            docker-compose --file docker-compose.test.yml build
+            docker-compose --file docker-compose.test.yml run sut
+          else
+            DOCKER_BUILDKIT=1 docker build \
+            --secret id=MTC_PASSWD,env=MTC_PASSWD \
+            --secret id=MTC_USRNAME,env=MTC_USRNAME \
+            --build-arg MTC_USRNAME="${MTC_USRNAME}" \
+            --build-arg MTC_PASSWD="${MTC_PASSWD}" . --file Dockerfile
+          fi
