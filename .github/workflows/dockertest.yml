@@ -33,7 +33,7 @@ jobs:
             docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
           else
-            DOCKER_BUILDKIT=1 docker build \
+            docker build \
             --secret id=MTC_PASSWD,env=MTC_PASSWD \
             --secret id=MTC_USRNAME,env=MTC_USRNAME \
             --secret id=MTC_ODS_USRNAME,env=MTC_ODS_USRNAME \
