@@ -3,7 +3,7 @@ on:
   push: 
     # Test `develop` 
     branches: 
-      - main 
+      - develop 
   # Run tests for any PRs. 
   pull_request: 
 env: 
