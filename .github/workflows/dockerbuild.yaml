@@ -60,7 +60,6 @@ jobs:
             ${{ secrets.DOCKERHUB_USRNAME }}/mosquitto:${{ env.MAJOR_VERSION }}
           # push to docker hub
           push: true
-
       
       # steps:
       #   - name: Build and push Docker images
