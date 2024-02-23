@@ -37,6 +37,6 @@ jobs:
             --build-arg MTC_USRNAME="${MTC_USRNAME}" \
             --build-arg MTC_PASSWD="${MTC_PASSWD}" \
             --build-arg MTC_ODS_USRNAME="${MTC_ODS_USRNAME}" \
-            --build-arg MTC_ODS_PASSWD="${sMTC_ODS_PASSWD}" . --file Dockerfile
+            --build-arg MTC_ODS_PASSWD="${MTC_ODS_PASSWD}" . --file Dockerfile
           fi
 
