@@ -25,7 +25,7 @@ jobs:
       
       - name: Set password and username secrets as environment variables
         run: |
-          if [ -z "${{ secrets.MTC_PASSWD }}" ]; then 
+         if [ -z "${{ secrets.MTC_PASSWD }}" ]; then 
             echo "Secret MTC_PASSWD is missing!" 
             exit 1 
           fi 
@@ -45,7 +45,7 @@ jobs:
           echo "MTC_PASSWD=${{ secrets.MTC_PASSWD }}" >> $GITHUB_ENV 
           echo "MTC_USERNAME=${{ secrets.MTC_USERNAME }}" >> $GITHUB_ENV 
           echo "ODS_USERNAME=${{ secrets.ODS_USERNAME }}" >> $GITHUB_ENV 
-          echo "ODS_PASSWD=${{ secrets.ODS_PASSWD }}" >> $GITHUB_ENV 
+          echo "ODS_PASSWD=${{ secrets.ODS_PASSWD }}" >> $GITHUB_ENV
           
       - name: Run tests
         run: |
